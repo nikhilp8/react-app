@@ -1,12 +1,54 @@
+var USER_DATA = {
+	name:'nikhil',
+	imageUrl:'https://avatars2.githubusercontent.com/u/5569829?v=3&s=460',
+	username:'ponugon'
+}
 var React = require('react');
 var ReactDOM = require('react-dom');
 
-var Hello = React.createClass({
+var Name = React.createClass({
   render: function () {
     return (
-      <div>Hello {this.props.name}!</div>
+      <div><h1>{this.props.name}</h1>
+ 
+      </div>
     )
   }
 });
 
-ReactDOM.render(<Hello name='nikhil'/>, document.getElementById('app'));
+var Image = React.createClass({
+  render: function () {
+    return (
+      <div>
+      	
+      	<img src={this.props.imageUrl}/>
+      	
+      </div>
+    )
+  }
+});
+
+var Username = React.createClass({
+  render: function () {
+    return (
+      <div>
+      	<h3> {this.props.username}</h3>
+      </div>
+    )
+  }
+});
+
+
+var Avatar = React.createClass({
+  render: function () {
+    return (
+      <div>
+      	<Name name={this.props.user.name}/>
+      	<Image imageUrl={this.props.user.imageUrl}/>
+      	<Username username={this.props.user.username}/>
+      </div>
+    )
+  }
+});
+
+ReactDOM.render(<Avatar user={USER_DATA}/>, document.getElementById('app'));
