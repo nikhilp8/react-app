@@ -28,11 +28,27 @@ var Image = React.createClass({
   }
 });
 
+var Link = React.createClass({
+	changeUrl: function(){
+		window.location.replace(this.props.href)
+	},
+	render: function(){
+		return(
+				<div style={{color:'brown',cursor:'pointer'}} onClick ={this.changeUrl}>
+					Hello mate {this.props.children}
+				</div>
+			)
+	}
+})
+
 var Username = React.createClass({
   render: function () {
     return (
       <div>
-      	<h3> {this.props.username}</h3>
+      	<h3> <Link href={'https://www.github.com/'+ this.props.username}>
+      			{this.props.username}
+      		</Link>
+      	</h3>
       </div>
     )
   }

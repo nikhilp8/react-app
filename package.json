@@ -19,7 +19,8 @@
   "homepage": "https://github.com/ponugon/react-app#readme",
   "dependencies": {
     "react": "^15.4.0",
-    "react-dom": "^15.4.0"
+    "react-dom": "^15.4.0",
+    "react-router": "^2.0.0-rc5"
   },
   "devDependencies": {
     "babel-core": "^6.18.2",
