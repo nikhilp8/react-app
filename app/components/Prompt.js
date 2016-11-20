@@ -1,20 +1,21 @@
 var React = require('react');
+var PropTypes = React.PropTypes;
 var transparentBg = require('../styles/index').transparentBg;
 
-var Prompt = React.createClass({
-  render: function () {
+	// functional stateless components
+  function Prompt(props) {
     return (
       <div>
 				<div className="jumbotron col-sm-6 col-sm-offset-3 text-center" style={transparentBg}>
-					<h1>{this.props.header}</h1>
+					<h1>{props.header}</h1>
 				
-					<form onSubmit = {this.props.onSubmitUser}>
+					<form onSubmit = {props.onSubmitUser}>
 						<div className="form-group">
 							<input className="form-control"
 							   placeholder="Github username"
 							   type="text"
-							   onChange={this.props.onUpdateUser}
-							   value={this.props.username}
+							   onChange={props.onUpdateUser}
+							   value={props.username}
 
 							   />
 						</div>
@@ -29,7 +30,14 @@ var Prompt = React.createClass({
 				</div>
 				</div>
     )
-  }
-});
+  
+};
+
+Prompt.propTypes= {
+		header:PropTypes.string.isRequired,
+		onSubmitUser: PropTypes.func.isRequired,
+		onUpdateUser: PropTypes.func.isRequired,
+		username: PropTypes.string.isRequired
+	};
 
 module.exports = Prompt;
