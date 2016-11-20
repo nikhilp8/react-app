@@ -16,13 +16,28 @@ var PromptContainer = React.createClass({
 		});
 	},
 
+	onSubmitUser: function(e){
+		e.preventDefault();	// and then setState
+		var username = this.setState.username;
+		this.setState({
+			username: ''	// so that when backbutton is clicked will not get the previous username
+		});
+	}
+
+	if(this.props.routeParams.playerOne){
+		//goto battle
+	}
+	else{
+		// goto player two
+	}
+
 	render:function(){
 
 		return(<div>
 				<div className="jumbotron col-sm-6 col-sm-offset-3 text-center" style={transparentBg}>
 					<h1>{this.props.route.header}</h1>
 				
-					<form >
+					<form onSubmit = {this.onSubmitUser}>
 						<div className="form-group">
 							<input className="form-control"
 							   placeholder="Github username"
