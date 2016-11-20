@@ -1,8 +1,15 @@
 var React = require('react');
-var transparentBg = require('../styles/index').transparentBg;
+var PropTypes = React.propTypes;
+var Prompt = require('../components/Prompt');
 
 var PromptContainer = React.createClass({
 
+	propTypes: {
+		header:PropTypes.string.isRequired,
+		onSubmitUser: PropTypes.func.isRequired,
+		onUpdateUser: PropTypes.func.isRequired,
+		username: PropTypes.string.isRequired
+	},
 
 	getInitialState: function(){
 		return {
@@ -10,53 +17,39 @@ var PromptContainer = React.createClass({
 		}
 	},
 
-	onUpdateUser: function(e) {
+	handleUpdateUser: function(e) {
 		this.setState({
 			username: e.target.value
 		});
 	},
 
-	onSubmitUser: function(e){
-		e.preventDefault();	// and then setState
-		var username = this.setState.username;
-		this.setState({
-			username: ''	// so that when backbutton is clicked will not get the previous username
-		});
-	}
+	handleSubmitUser: function(e){
+		 e.preventDefault();
+    var username = this.state.username;
+    this.setState({
+      username: ''
+    });
 
-	if(this.props.routeParams.playerOne){
-		//goto battle
-	}
-	else{
-		// goto player two
-	}
+    if (this.props.routeParams.playerOne) {
+      this.context.router.push({
+        pathname: '/battle',
+        query: {
+          playerOne: this.props.routeParams.playerOne,
+          playerTwo: this.state.username,
+        }
+      })
+    } else {
+      this.context.router.push('/playerTwo/' + this.state.username)
+    }
+},
 
 	render:function(){
 
-		return(<div>
-				<div className="jumbotron col-sm-6 col-sm-offset-3 text-center" style={transparentBg}>
-					<h1>{this.props.route.header}</h1>
-				
-					<form onSubmit = {this.onSubmitUser}>
-						<div className="form-group">
-							<input className="form-control"
-							   placeholder="Github username"
-							   type="text"
-							   onChange={this.onUpdateUser}
-							   value={this.state.username}
-
-							   />
-						</div>
-						<div className="form-group col-md-2 col-md-offset-5">
-							<button className="btn btn-block btn-success"
-									type="button">
-								Continue
-							</button>
-						</div>
-					</form>
-					
-				</div>
-				</div>
+		return(
+			<Prompt onSubmitUser={this.handleSubmitUser}
+					onUpdateUser={this.handleUpdateUser}
+					header={this.props.route.header}
+					username={this.state.username}/>
 			)
 	}
 });
