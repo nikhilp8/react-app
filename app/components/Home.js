@@ -1,26 +1,18 @@
 var React = require('react');
 var ReactRouter = require('react-router');
-var Link = ReactRouter.Link;
+var Link = ReactRouter.Link
+var transparentBg = require('../styles').transparentBg;
 
-var transparentBg = require('../styles/index').transparentBg;
-
-
-var Home = React.createClass({
-  render: function () {
-    return (
-      <div>
-      	<div className='jumbotron col-md-12 text-center' style={transparentBg}>
-      		<h1>GitHub battle</h1>
-      		<p className='lead'>A fun game</p>
-         	
-      	<Link to='/playerOne'>
-	      	<button className='btn btn-lg btn-success'>Continue</button>
-      	</Link>
-      	
-      </div>
-      </div>
-    )
-  }
-});
+function Home () {
+  return (
+    <div className="jumbotron col-sm-12 text-center" style={transparentBg}>
+      <h1>Github Battle</h1>
+      <p className='lead'>What even is a jQuery?</p>
+      <Link to='/playerOne'>
+        <button type='button' className='btn btn-lg btn-success'>Get Started</button>
+      </Link>
+    </div>
+  )
+}
 
 module.exports = Home;

@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/ponugon/react-app#readme",
   "dependencies": {
+    "axios": "^0.15.2",
     "react": "^15.4.0",
     "react-dom": "^15.4.0",
     "react-router": "^2.0.0-rc5"
