@@ -1,30 +1,17 @@
 var React = require('react');
-var PropTypes = React.propTypes;
 var Prompt = require('../components/Prompt');
 
 var PromptContainer = React.createClass({
-
-	propTypes: {
-		header:PropTypes.string.isRequired,
-		onSubmitUser: PropTypes.func.isRequired,
-		onUpdateUser: PropTypes.func.isRequired,
-		username: PropTypes.string.isRequired
-	},
-
-	getInitialState: function(){
-		return {
-			username: ''
-		}
-	},
-
-	handleUpdateUser: function(e) {
-		this.setState({
-			username: e.target.value
-		});
-	},
-
-	handleSubmitUser: function(e){
-		 e.preventDefault();
+  contextTypes: {
+    router: React.PropTypes.object.isRequired
+  },
+  getInitialState: function () {
+    return {
+      username: ''
+    }
+  },
+  handleSubmitUser: function (e) {
+    e.preventDefault();
     var username = this.state.username;
     this.setState({
       username: ''
@@ -41,17 +28,21 @@ var PromptContainer = React.createClass({
     } else {
       this.context.router.push('/playerTwo/' + this.state.username)
     }
-},
-
-	render:function(){
-
-		return(
-			<Prompt onSubmitUser={this.handleSubmitUser}
-					onUpdateUser={this.handleUpdateUser}
-					header={this.props.route.header}
-					username={this.state.username}/>
-			)
-	}
+  },
+  handleUpdateUser: function (event) {
+    this.setState({
+      username: event.target.value
+    });
+  },
+  render: function () {
+    return (
+      <Prompt
+        onSubmitUser={this.handleSubmitUser}
+        onUpdateUser={this.handleUpdateUser}
+        header={this.props.route.header}
+        username={this.state.username} />
+    )
+  }
 });
 
 module.exports = PromptContainer;
